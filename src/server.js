@@ -1,6 +1,10 @@
-import express from "express";
+import { app, httpServer, io } from "./socket/socketServer.js";
+import dotenv from "dotenv";
+import connectYWebSocket from "./socket/yjsServer.js";
 
-const app = express();
-app.listen(5000, () => {
-	console.log("server running");
+dotenv.config();
+
+connectYWebSocket();
+httpServer.listen(process.env.PORT || 5000, () => {
+	console.log("Server running on port: " + process.env.PORT);
 });
